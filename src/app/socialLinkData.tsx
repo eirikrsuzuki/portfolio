@@ -35,7 +35,7 @@ export const socialLinkData: SocialLink[] = [
   },
   {
     name: 'Resume',
-    href: 'https://alkemyst.online/eric_suzuki_cv_2025.pdf',
+    href: 'https://alkemyst.online/eric_suzuki_cv_2025-updated.pdf',
     icon: <IconCv className="w-6 h-6 hover:text-[#DDDDDD]" />,
   },
   {
