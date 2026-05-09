@@ -15,7 +15,7 @@ export interface SocialLink {
 export const socialLinkData: SocialLink[] = [
   {
     name: 'GitHub',
-    href: 'https://github.com/eirikrsuzuki/portfolio/pull/1',
+    href: 'https://github.com/erikksuzuki/portfolio/pull/1',
     icon: <IconGithub className="w-6 h-6 hover:text-[#DDDDDD]" />,
   },
   {
@@ -35,7 +35,7 @@ export const socialLinkData: SocialLink[] = [
   },
   {
     name: 'Resume',
-    href: 'https://alkemyst.online/eric_suzuki_cv_2026',
+    href: 'https://alkemyst.online/eric_suzuki_cv_2026.pdf',
     icon: <IconCv className="w-6 h-6 hover:text-[#DDDDDD]" />,
   },
   {
