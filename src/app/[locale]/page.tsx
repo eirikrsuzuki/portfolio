@@ -20,7 +20,7 @@ export default function Home() {
   const t = useTranslations('header')
   const messages = useMessages() as any
   const paragraphsArray = Object.values(
-    messages.header.introduction.paragraphs ?? {}
+    messages.header.introduction.paragraphs ?? {},
   )
   const technologiesArray: string[] = [
     'React',
@@ -61,7 +61,7 @@ export default function Home() {
           </div>
           <div className="md:order-2 order-1 flex flex-col justify-center items-center">
             <img
-              src={LinkImage.src}
+              src="/fornace-4799f6b4-c827-4874-a99d-c1a0b0aca168-1778833893829.jpg"
               alt={'LinkGifImage'}
               className="w-full h-auto"
             />
