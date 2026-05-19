@@ -70,9 +70,9 @@ export default function Home() {
       </main>
       <SpotifySection />
       <div className="py-24 px-4 md:px-8 w-full mx-auto max-w-[1024px]">
-        <ReactWiseSection />
-        <VailoSection columnsReversed />
         <AkamiSection />
+        <ReactWiseSection columnsReversed />
+        <VailoSection />
         <BlockscopeSection columnsReversed />
         <FreeportSection />
         <GeminiSection columnsReversed />
