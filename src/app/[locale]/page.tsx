@@ -5,8 +5,6 @@ import SocialLinks from '@/components/common/SocialLinks'
 import { socialLinkData } from '../socialLinkData'
 import LanguagePicker from '@/components/common/LanguageSwitcher'
 
-import LinkImage from '@/assets/desk_illustration.jpg'
-
 import SpotifySection from '@/app/[locale]/Spotify'
 import BlockscopeSection from './Blockscope'
 import FreeportSection from './Freeport'
@@ -15,6 +13,7 @@ import FreelanceSection from './Freelance'
 import SteamSection from './Steam'
 import ReadingSection from './Reading'
 import AkamiSection from './Akami'
+import ReactWiseSection from './ReactWise'
 
 export default function Home() {
   const t = useTranslations('header')
@@ -67,26 +66,15 @@ export default function Home() {
             />
           </div>
         </section>
-        {/* 
-        <section className="text-left mb-8">
-          <h1 className="text-theme-heading-xs font-poppins mb-3">
-            Recent Blog Articles
-          </h1>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 rounded-md border border-white">some content</div>
-            <div className="p-4 rounded-md border border-white">some content</div>
-            <div className="p-4 rounded-md border border-white">some content</div>
-          </div>
-        </section> 
-      */}
       </main>
       <SpotifySection />
       <div className="py-24 px-4 md:px-8 w-full mx-auto max-w-[1024px]">
         <AkamiSection />
-        <BlockscopeSection columnsReversed />
-        <FreeportSection />
-        <GeminiSection columnsReversed />
-        <FreelanceSection />
+        <ReactWiseSection columnsReversed />
+        <BlockscopeSection />
+        <FreeportSection columnsReversed />
+        <GeminiSection />
+        <FreelanceSection columnsReversed />
       </div>
       <ReadingSection />
       <SteamSection />
