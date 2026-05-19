@@ -41,8 +41,8 @@
   },
   "blockscope": {
     "blockscope": {
-      "heading": "Web 3 Analytics",
-      "name": "Blockscope (YC S22)",
+      "heading": "Web 3 Observability",
+      "name": "Web 3 Data Platform (YC S22)",
       "paragraphs": {
         "1": "Blockscope is a Web3 data platform that enables anyone interested in on-chain data to quickly spin up live or historical data pipelines.",
         "2": "During my time at the company, I built new features for their core products and improved several others."
