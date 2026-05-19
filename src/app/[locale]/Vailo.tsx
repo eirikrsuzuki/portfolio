@@ -32,16 +32,15 @@ const VailoSection = ({
         },
       ]}
       technologiesArray={[
-        'React',
-        'Vite',
+        'React + Vite',
         'Next.js',
         'TypeScript',
-        'Supabase',
         'Stripe',
         'Contentful',
-        'TanStack Router',
-        'Zustand',
         'Storybook',
+        'Motion (Animations)',
+        'Embla Carousel',
+        'Radix Primitives',
       ]}
       illustrationBgSrc={''}
       illustrationSlides={[]}
