@@ -61,13 +61,13 @@
       "name": "Vailo AI",
       "paragraphs": {
         "1": "Vailo AI is a multi-model generative AI creative studio that transforms text and images into cinematic video, powering use cases from UGC ads and product showcases to storyboards and short-form social content.",
-        "2": "I owned all frontend architecture and features and brought the app from prototype to fully-functioning commercial viability."
+        "2": "I led and managed all frontend development and brought the app from prototype to fully-functioning commercial viability."
       },
       "achievements": {
         "1": "Built CI/CD pipelines and A/B testing capabilities, reducing frontend deployments from hours to minutes",
         "2": "Translated Figma designs into an accessibility-compliant React component library with Storybook documentation",
         "3": "Designed and implemented data models for Contentful CMS",
-        "6": "Owned all frontend features and architecture, from state management to routing, including PWA features for mobile"
+        "6": "Built the frontend architecture and features from scratch, inlcuding state management, routing, CMS integration, infrastructure for localization and mobile PWA functionality"
       }
     }
   },
