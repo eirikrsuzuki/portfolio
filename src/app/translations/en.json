@@ -64,10 +64,10 @@
         "2": "I led and managed all frontend development and brought the app from prototype to fully-functioning commercial viability."
       },
       "achievements": {
-        "1": "Built CI/CD pipelines and A/B testing capabilities, reducing frontend deployments from hours to minutes",
+        "1": "Built CI/CD pipelines and A/B testing capabilities, reducing deployments from hours to minutes",
         "2": "Translated Figma designs into an accessibility-compliant React component library with Storybook documentation",
         "3": "Designed and implemented data models for Contentful CMS",
-        "6": "Built the frontend architecture and features from scratch, inlcuding state management, routing, CMS integration, infrastructure for localization and mobile PWA functionality"
+        "6": "Built all frontend architecture and features, inlcuding state management, routing, CMS integration, infrastructure for localization and mobile PWA functionality"
       }
     }
   },
