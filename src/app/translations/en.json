@@ -55,6 +55,25 @@
       }
     }
   },
+  "vailo": {
+    "vailo": {
+      "heading": "Generative AI Creative Studio",
+      "name": "Vailo AI",
+      "paragraphs": {
+        "1": "Vailo AI is a multi-model generative AI creative studio that transforms text and images into cinematic video, powering use cases from UGC ads and product showcases to storyboards and short-form social content — no cameras, crews, or complex editing needed.",
+        "2": "I joined during V1 and co-built V2 from scratch with the team. I owned all frontend architecture and features, built CI/CD pipelines that reduced deployment times from hours to minutes, and translated Figma designs into a fully accessible React component library with Storybook documentation. I also designed Contentful CMS data models, prepared the platform for i18n and localization, and integrated cross-site authentication persistence across the SPA and marketing site."
+      },
+      "achievements": {
+        "1": "Built CI/CD pipelines and A/B testing capabilities, reducing frontend deployments from hours to minutes",
+        "2": "Translated Figma designs into an accessibility-compliant React component library with Storybook documentation",
+        "3": "Designed and implemented data models for Contentful CMS",
+        "4": "Prepared the platform for i18n integration and localization",
+        "5": "Identified key UX improvements and managed task creation and tracking",
+        "6": "Owned all frontend features and architecture, from state management to routing, including PWA features for mobile",
+        "7": "Integrated cross-site authentication persistence across the SPA and marketing site"
+      }
+    }
+  },
   "blockscope": {
     "blockscope": {
       "heading": "Web 3 Observability",

@@ -14,6 +14,7 @@ import SteamSection from './Steam'
 import ReadingSection from './Reading'
 import AkamiSection from './Akami'
 import ReactWiseSection from './ReactWise'
+import VailoSection from './Vailo'
 
 export default function Home() {
   const t = useTranslations('header')
@@ -71,10 +72,11 @@ export default function Home() {
       <div className="py-24 px-4 md:px-8 w-full mx-auto max-w-[1024px]">
         <AkamiSection />
         <ReactWiseSection columnsReversed />
-        <BlockscopeSection />
-        <FreeportSection columnsReversed />
-        <GeminiSection />
-        <FreelanceSection columnsReversed />
+        <VailoSection />
+        <BlockscopeSection columnsReversed />
+        <FreeportSection />
+        <GeminiSection columnsReversed />
+        <FreelanceSection />
       </div>
       <ReadingSection />
       <SteamSection />
