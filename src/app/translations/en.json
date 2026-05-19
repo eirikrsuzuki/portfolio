@@ -45,7 +45,7 @@
       "name": "ReactWise",
       "paragraphs": {
         "1": "ReactWise is a Y Combinator-backed Cambridge startup applying AI to accelerate pharmaceutical manufacturing — helping drug companies scale production from lab to clinical trial up to 30x faster than traditional methods.",
-        "2": "I joined the company early and led a full redesign of the platform's user interface, introducing more intuitive UX patterns, animations, improved navigation, breadcrumbs, and refined layout and routing logic. I also spearheaded a framework migration from Next.js to React and Vite, integrated new APIs from a reworked backend architecture, and contributed to efforts that helped the company secure more than $1M in funding and investment."
+        "2": "I joined the company early and led a full redesign of the platform's user interface, introducing more intuitive UX patterns, animations, improved navigation, breadcrumbs, and refined layout and routing logic. I also led the development of the framework migration from Next.js to React and Vite, integrated new APIs from a reworked backend architecture, and contributed to efforts that helped the company secure more than $1M in funding and investment."
       },
       "achievements": {
         "1": "Redesigned the entire UI with improved UX, animations, and navigation",

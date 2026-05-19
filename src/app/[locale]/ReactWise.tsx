@@ -39,7 +39,7 @@ const ReactWiseSection = ({
         'REST APIs',
         'React Router',
       ]}
-      illustrationBgSrc={undefined}
+      illustrationBgSrc={''}
       illustrationSlides={[]}
     />
   )
