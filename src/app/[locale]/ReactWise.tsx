@@ -32,9 +32,9 @@ const ReactWiseSection = ({
         },
       ]}
       technologiesArray={[
-        'React',
-        'Vite',
-        'TypeScript',
+        'React + Vite',
+        'Tanstack Router',
+        'Tanstack Query',
         'Python',
         'REST APIs',
         'React Router',
