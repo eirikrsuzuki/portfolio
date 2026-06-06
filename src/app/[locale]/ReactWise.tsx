@@ -35,7 +35,7 @@ const ReactWiseSection = ({
         'React + Vite',
         'Tanstack Router',
         'Tanstack Query',
-        'Python',
+        '',
         'REST APIs',
         'React Router',
       ]}
