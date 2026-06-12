@@ -4,6 +4,12 @@ import WorkSection from '@/components/common/WorkSection'
 
 import CrunchbaseIcon from '@/assets/link-icons/crunchbase.png'
 import YoutubeIcon from '@/assets/link-icons/youtube.png'
+import VailoLogo from '@/assets/vailo/vailo-logo.svg'
+import VailoBackground from '@/assets/backgrounds/vailo.svg'
+import { runVailoAnimations } from '@/components/WorkVailo/animations'
+import SlideShowVailoLogo from '@/components/WorkVailo/SlideShowLogo'
+import SlideShowModels from '@/components/WorkVailo/SlideShowModels'
+import SlideShowPrompt from '@/components/WorkVailo/SlideShowPrompt'
 
 const VailoSection = ({
   columnsReversed = false,
@@ -18,7 +24,7 @@ const VailoSection = ({
         {
           label: 'Website',
           href: 'https://vailo.ai',
-          iconSrc: undefined,
+          iconSrc: VailoLogo.src,
         },
         {
           label: 'Crunchbase',
@@ -42,8 +48,13 @@ const VailoSection = ({
         'Embla Carousel',
         'Radix Primitives',
       ]}
-      illustrationBgSrc={''}
-      illustrationSlides={[]}
+      illustrationBgSrc={VailoBackground.src}
+      animationFunction={runVailoAnimations}
+      illustrationSlides={[
+        <SlideShowVailoLogo key={'vailo1'} />,
+        <SlideShowModels key={'vailo2'} />,
+        <SlideShowPrompt key={'vailo3'} />,
+      ]}
     />
   )
 }
