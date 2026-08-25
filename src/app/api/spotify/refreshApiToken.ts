@@ -1,37 +1,8 @@
-import { createClient } from '@/utils/supabase/server'
+import { buildAuthorizationHeader, persistTokens } from './spotifyAuth'
 
 export type RefreshResult =
   | { ok: true; accessToken: string; refreshToken?: string }
   | { ok: false; message: string }
-
-/**
- * Builds the `Authorization: Basic ...` header for the token endpoint.
- *
- * Preferred path is deriving it from the raw client id/secret so the base64
- * padding is always correct. The previous implementation hardcoded a trailing
- * "=" onto SPOTIFY_AUTHORIZATION_STRING, which produced a malformed header
- * whenever the stored value was already padded.
- */
-function buildAuthorizationHeader(): string | null {
-  const clientId =
-    process.env.SPOTIFY_CLIENT_ID ?? process.env.NEXT_PUBLIC_SPOTIFY_CLIENT_ID
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET
-
-  if (clientId && clientSecret) {
-    const encoded = Buffer.from(`${clientId}:${clientSecret}`).toString('base64')
-    return `Basic ${encoded}`
-  }
-
-  // Fallback: a pre-encoded string in the environment. Re-pad it rather than
-  // appending "=" blindly, since some hosts strip trailing padding.
-  const preEncoded = process.env.SPOTIFY_AUTHORIZATION_STRING?.trim()
-  if (!preEncoded) return null
-
-  const unpadded = preEncoded.replace(/=+$/, '')
-  const remainder = unpadded.length % 4
-  const padding = remainder === 0 ? '' : '='.repeat(4 - remainder)
-  return `Basic ${unpadded}${padding}`
-}
 
 export async function refreshApiToken(
   refreshToken?: string | null
@@ -69,17 +40,22 @@ export async function refreshApiToken(
     payload = await response.json().catch(() => null)
 
     if (!response.ok || !payload?.access_token) {
-      return {
-        ok: false,
-        message:
-          payload?.error_description ??
-          payload?.error ??
-          `Spotify token refresh failed with status ${response.status}.`,
+      const message =
+        payload?.error_description ??
+        payload?.error ??
+        `Spotify token refresh failed with status ${response.status}.`
+
+      // `invalid_grant` means the grant is gone for good — no amount of
+      // retrying helps, the flow at /api/spotify/authorize has to be re-run.
+      if (payload?.error === 'invalid_grant') {
+        console.error(
+          `[spotify] refresh token is no longer valid (${message}). Re-run /api/spotify/authorize to issue a new one.`
+        )
       }
+
+      return { ok: false, message }
     }
   } catch (error) {
-    // The old code caught this but carried on, then read `response.refresh_token`
-    // off an undefined value and threw a second, more confusing error.
     console.error('[spotify] token refresh request threw:', error)
     return {
       ok: false,
@@ -87,29 +63,14 @@ export async function refreshApiToken(
     }
   }
 
-  // Only persist once the refresh has actually succeeded. Previously a failed
-  // call wrote `undefined` over the stored access token.
-  const expiresInMs = (Number(payload.expires_in) || 3600) * 1000
-
-  const { error: dbError } = await createClient()
-    .from('spotify')
-    .update({
-      access_token: payload.access_token,
-      created_at: new Date().toISOString(),
-      expires_at: new Date(Date.now() + expiresInMs).toISOString(),
-      // Spotify only returns a new refresh token occasionally; keep the
-      // existing one when it does not.
-      ...(payload.refresh_token
-        ? { refresh_token: payload.refresh_token }
-        : {}),
-    })
-    .eq('id', '1')
-    .select()
-
-  if (dbError) {
-    // The token in hand is still valid, so serve the request and log the
-    // write failure rather than failing the whole section.
-    console.error('[spotify] failed to persist refreshed token:', dbError)
+  const persisted = await persistTokens(payload)
+  if (!persisted.ok) {
+    // The token in hand is still valid, so serve the request and log the write
+    // failure rather than failing the whole section.
+    console.error(
+      '[spotify] failed to persist refreshed token:',
+      persisted.message
+    )
   }
 
   return {
