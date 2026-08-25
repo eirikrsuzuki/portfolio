@@ -2,7 +2,6 @@
 
 import { formatAMPM } from '@/utils/formatDateTime'
 import Image from 'next/image'
-import { useEffect } from 'react'
 
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
@@ -13,19 +12,31 @@ import { useResponsive } from '@/hooks/useResponsive'
 import * as Tooltip from '@radix-ui/react-tooltip'
 import IconExternalPage from '@/assets/icons/common/IconExternalPage'
 
+// Registered at module load rather than in a useEffect. `new TimeAgo('en-US')`
+// runs during render, i.e. before effects fire — the old ordering only worked
+// by accident because the parent happened to register the locale first.
+TimeAgo.addLocale(en)
+TimeAgo.setDefaultLocale(en.locale)
+
+const timeAgo = new TimeAgo('en-US')
+
 const SpotifyTrackListing = ({ track, lastItem }: any) => {
   const { isAboveMd } = useResponsive('md')
-  useEffect(() => {
-    TimeAgo.setDefaultLocale(en.locale)
-    TimeAgo.addLocale(en)
-  }, [])
 
-  const timeAgo = new TimeAgo('en-US')
-  const playedAt = new Date(track.played_at).getTime()
+  const item = track?.track
+  const trackUrl = item?.external_urls?.spotify
+  const trackName = item?.name
+  const albumImage = item?.album?.images?.[0]?.url
 
-  const attributions = track?.track?.artists
-    ? track.track.artists.map((artist: any) => artist.name).join(', ')
-    : 'Unknown Artist'
+  // Render nothing rather than throwing on a malformed entry.
+  if (!item || !trackUrl || !trackName) return null
+
+  const attributions = Array.isArray(item.artists)
+    ? item.artists.map((artist: any) => artist?.name).filter(Boolean).join(', ')
+    : ''
+
+  const playedAtMs = track?.played_at ? new Date(track.played_at).getTime() : NaN
+  const hasPlayedAt = !Number.isNaN(playedAtMs)
 
   const listItem = (
     <li
@@ -35,36 +46,43 @@ const SpotifyTrackListing = ({ track, lastItem }: any) => {
     >
       <div className="flex items-center gap-x-4">
         <div className="min-w-[36px] min-h-[36px] overflow-hidden rounded-sm border border-[rgba(255,255,255,0.2)]">
-          <Image
-            alt={track.track.album.name}
-            src={track.track.album.images[0].url}
-            height={36}
-            width={36}
-          />
+          {albumImage ? (
+            <Image
+              alt={item.album?.name ?? trackName}
+              src={albumImage}
+              height={36}
+              width={36}
+            />
+          ) : (
+            <div className="w-[36px] h-[36px] bg-[rgba(255,255,255,0.08)]" />
+          )}
         </div>
         <div>
           <p className="text-theme-sm">
-            {truncateParagraph(track.track.name, isAboveMd ? 39 : 26, false)}
+            {truncateParagraph(trackName, isAboveMd ? 39 : 26, false)}
           </p>
-          <p className="text-theme-xs opacity-[0.8]">{attributions}</p>
+          <p className="text-theme-xs opacity-[0.8]">
+            {attributions || 'Unknown Artist'}
+          </p>
         </div>
       </div>
       <div className="text-right min-w-[100px]">
-        <p className="text-theme-xs opacity-[0.7] mb-[2px]">
-          {formatAMPM(track.played_at)}
-        </p>
-        <p className="text-theme-xs opacity-[0.5]">
-          {timeAgo.format(playedAt)}
-        </p>
+        {hasPlayedAt && (
+          <>
+            <p className="text-theme-xs opacity-[0.7] mb-[2px]">
+              {formatAMPM(track.played_at)}
+            </p>
+            <p className="text-theme-xs opacity-[0.5]">
+              {timeAgo.format(playedAtMs)}
+            </p>
+          </>
+        )}
       </div>
     </li>
   )
+
   return (
-    <Link
-      href={track.track.external_urls.spotify}
-      target="_blank"
-      className="w-full"
-    >
+    <Link href={trackUrl} target="_blank" className="w-full">
       {isAboveMd ? (
         <Tooltip.Provider delayDuration={0}>
           <Tooltip.Root>
