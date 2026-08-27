@@ -20,7 +20,7 @@ export const socialLinkData: SocialLink[] = [
   },
   {
     name: 'Instagram',
-    href: 'https://www.instagram.com/erikksuzuki',
+    href: 'https://www.instagram.com/eric__suzuki/',
     icon: <IconInstagram className="w-6 h-6 hover:text-[#FAA6A0]" />,
   },
   {
