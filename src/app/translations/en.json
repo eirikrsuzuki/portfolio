@@ -39,6 +39,38 @@
       }
     }
   },
+  "reactwise": {
+    "reactwise": {
+      "heading": "AI Copilot for Chemical Process Optimization",
+      "name": "ReactWise",
+      "paragraphs": {
+        "1": "ReactWise is a Y Combinator-backed Cambridge startup applying AI to accelerate pharmaceutical manufacturing — helping drug companies scale production from lab to clinical trial up to 30x faster than traditional methods.",
+        "2": "I joined the company early and led a full redesign of the platform's user interface, introducing more intuitive UX patterns, animations, improved navigation, breadcrumbs, routing logic and a refined layout. I also led the development of the framework migration from Next.js to React and Vite, integrated new APIs from a reworked backend architecture, and contributed to efforts that helped the company secure more than $1M in funding and investment."
+      },
+      "achievements": {
+        "1": "Redesigned the entire UI with improved UX, animations, and navigation",
+        "2": "Migrated the platform from Next.js to a React + Vite framework",
+        "3": "Integrated new APIs from a reworked backend architecture",
+        "4": "Contributed to fundraising efforts that secured over $1M in investment"
+      }
+    }
+  },
+  "vailo": {
+    "vailo": {
+      "heading": "Generative AI Creative Studio",
+      "name": "Vailo AI",
+      "paragraphs": {
+        "1": "Vailo AI is a multi-model generative AI creative studio that transforms text and images into cinematic video, powering use cases from UGC ads and product showcases to storyboards and short-form social content.",
+        "2": "I led and managed all frontend development and brought the app from prototype to fully-functioning commercial viability."
+      },
+      "achievements": {
+        "1": "Built CI/CD pipelines and A/B testing capabilities, reducing deployments from hours to minutes",
+        "2": "Translated Figma designs into an accessibility-compliant React component library with Storybook documentation",
+        "3": "Designed and implemented data models for Contentful CMS",
+        "6": "Built all frontend architecture and features, inlcuding state management, routing, CMS integration, infrastructure for localization and mobile PWA functionality"
+      }
+    }
+  },
   "blockscope": {
     "blockscope": {
       "heading": "Web 3 Observability",
